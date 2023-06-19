@@ -1,5 +1,4 @@
 //Variables
-
 let tarjetasDestapadas = 0;
 let tarjeta1 = null;
 let tarjeta2 = null;
@@ -17,7 +16,6 @@ let mostrarMovimientos = document.getElementById('movimientos');
 let mostrarAciertos = document.getElementById('pares');
 let mostrarTiempo = document.getElementById('tiempo');
 
-
 //generacion numeros aleatorios
 let numeros = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
 numeros = numeros.sort(()=>{return Math.random()-0.5});
@@ -27,7 +25,7 @@ function contarTiempo(){
     tiempoRegresivo = setInterval(() => {
         timer--;
         mostrarTiempo.innerHTML= `Tiempo: ${timer}`;
-        if (timer == 0) {
+        if (timer === 0) {
             clearInterval(tiempoRegresivo);
             bloquearTarjetas();
         }
@@ -43,14 +41,13 @@ function bloquearTarjetas(){
     }
 }
 
-if(tarjetasDestapadas == 0){}
+if(tarjetasDestapadas === 0){}
 
 
 //Funcion pricipal
 
 function destapar(id){
-
-    if (temporizador == false) {
+    if (temporizador === false) {
         contarTiempo();
         temporizador = true;
     }
@@ -58,7 +55,7 @@ function destapar(id){
     tarjetasDestapadas++;
     console.log(tarjetasDestapadas);
 
-    if(tarjetasDestapadas == 1){
+    if(tarjetasDestapadas === 1){
         // mostrar primera tarjeta
         tarjeta1 = document.getElementById(id);
         primerResultado = numeros[id];
@@ -66,7 +63,7 @@ function destapar(id){
 
         //deshabilitar contador
         tarjeta1.disabled = true;
-    }else if(tarjetasDestapadas == 2){
+    }else if(tarjetasDestapadas === 2){
         // mostrar segunda tarjeta
         tarjeta2 = document.getElementById(id);
         segundoResultado = numeros[id];
@@ -88,7 +85,7 @@ function destapar(id){
             pares++;
             mostrarAciertos.innerHTML = `Pares: ${pares}`;
 
-            if(pares == 10){
+            if(pares === 10){
                 clearInterval(tiempoRegresivo);
                 mostrarAciertos.innerHTML = `Pares: ${pares}`
                 mostrarTiempo.innerHTML = `Genial, te has demorado ${timerInicial - timer} segundos`;
@@ -96,7 +93,6 @@ function destapar(id){
             }
         }else{
             // mostrar cartas y volver a tapar
-
             setTimeout(()=>{
                 tarjeta1.disabled = false;
                 tarjeta2.disabled = false;
